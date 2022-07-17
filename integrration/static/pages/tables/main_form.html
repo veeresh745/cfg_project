@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      background-color: skyblue;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: skyblue;
+    }
+
+    div {
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+    body {
+      background-color: #c0c0c0;
+    }
+  </style>
+  <body>
+    <div>
+      <form id="farmer-form">
+        <label for="fname">Farmer Name</label>
+        <input
+          type="text"
+          id="fname"
+          name="firstname"
+          placeholder="Your name.."
+          value=""
+        />
+        <label for="lname">Land mapping</label>
+        <input
+          type="text"
+          id="lname"
+          name="landmark"
+          placeholder="The land mapping"
+        />
+        <label for="age">Age</label>
+        <input type="text" id="age" name="age" placeholder="Farmer's Age" />
+        <label for="activity">Farming activity state</label>
+        <select id="activity" name="activity">
+          <option value="Sowing">Sowing`</option>
+          <option value="Plaughing">Plaughing</option>
+          <option value="Harvesting">Harvesting</option>
+        </select>
+        <label for="startdate">Start date</label>
+        <input type="date" id="startdate" name="Start date" />
+        <label for="enddate">End date</label>
+        <input type="date" id="enddate" name="End date" />
+        <br /><br />
+        <label for="photo1">Photographs</label>
+        <input type="file" id="photo" name="photos" />
+        <br /><br />
+        <label for="video1">Videos</label>
+        <input type="file" id="video" name="videos" />
+        <br /><br />
+        <label for="now">Number of workers involved</label>
+        <input
+          type="text"
+          id="now"
+          name="numofworkers"
+          placeholder="Number of workers"
+        />
+        <button type="button" onclick="expandable()">Next</button>
+        <div id="container"></div>
+        <label for="now">Number of Assets</label>
+        <input
+          type="text"
+          id="noa"
+          name="numofassets"
+          placeholder="Number of assets"
+        />
+        <button type="button" onclick="assets()">Next</button>
+        <div id="container2"></div>
+        <label for="now">Number of Materials</label>
+        <input
+          type="text"
+          id="nom"
+          name="numofassets"
+          placeholder="Number of Materials consumed"
+        />
+        <button type="button" onclick="payments()">Next</button>
+        <div id="container3"></div>
+        <input id="submit-btn" type="submit" value="Submit" />
+      </form>
+    </div>
+  </body>
+  <script>
+    function expandable() {
+      let number = document.getElementById("now").value;
+      for (i = 0; i < number; i++) {
+        // Append a node with a random text
+        const label = document.createElement("label");
+        label.htmlFor = "worker" + i;
+        label.textContent = "Worker " + (i + 1);
+        container.appendChild(label);
+        // Create an <input> element, set its type and name attributes
+        var input = document.createElement("input");
+        input.type = "text";
+        input.name = "worker" + i;
+        input.id = "worker" + i;
+        container.appendChild(input);
+        // Append a line break
+        container.appendChild(document.createElement("br"));
+      }
+      expandable2();
+    }
+    function expandable2() {
+      let number = document.getElementById("now").value;
+      for (i = 0; i < number; i++) {
+        // Append a node with a random text
+        const label = document.createElement("label");
+        label.htmlFor = "wages" + i;
+        label.textContent = "Worker Wages " + (i + 1);
+        container.appendChild(label);
+        // Create an <input> element, set its type and name attributes
+        var input = document.createElement("input");
+        input.type = "text";
+        input.name = "wages" + i;
+        input.id = "wages" + i;
+        container.appendChild(input);
+        // Append a line break
+        container.appendChild(document.createElement("br"));
+      }
+      expandable3();
+    }
+    function expandable3() {
+      let number = document.getElementById("now").value;
+      for (i = 0; i < number; i++) {
+        // Append a node with a random text
+        const label = document.createElement("label");
+        label.htmlFor = "duration" + i;
+        label.textContent = "Worker Duration " + (i + 1);
+        container.appendChild(label);
+        // Create an <input> element, set its type and name attributes
+        var input = document.createElement("input");
+        input.type = "text";
+        input.name = "duration" + i;
+        input.id = "duration" + i;
+        container.appendChild(input);
+        // Append a line break
+        container.appendChild(document.createElement("br"));
+      }
+    }
+    function assets() {
+      let number = document.getElementById("noa").value;
+      for (i = 0; i < number; i++) {
+        // Append a node with a random text
+        const label = document.createElement("label");
+        label.htmlFor = "asset" + i;
+        label.textContent = "Type of Asset " + (i + 1);
+        container2.appendChild(label);
+        // Create an <input> element, set its type and name attributes
+        var input = document.createElement("input");
+        input.type = "text";
+        input.name = "Asset" + i;
+        input.id = "asset" + i;
+        container2.appendChild(input);
+        // Append a line break
+        container.appendChild(document.createElement("br"));
+      }
+      assets2();
+    }
+    function assets2() {
+      let number = document.getElementById("noa").value;
+      for (i = 0; i < number; i++) {
+        // Append a node with a random text
+        const label = document.createElement("label");
+        label.htmlFor = "driver" + i;
+        label.textContent = "Driver of asset " + (i + 1);
+        container2.appendChild(label);
+        // Create an <input> element, set its type and name attributes
+        var input = document.createElement("input");
+        input.type = "text";
+        input.name = "Driver" + i;
+        input.id = "driver" + i;
+        container2.appendChild(input);
+        // Append a line break
+        container2.appendChild(document.createElement("br"));
+      }
+      assets3();
+    }
+    function assets3() {
+      let number = document.getElementById("noa").value;
+      for (i = 0; i < number; i++) {
+        // Append a node with a random text
+        const label = document.createElement("label");
+        label.htmlFor = "assetWage" + i;
+        label.textContent = "Wage of asset " + (i + 1);
+        container2.appendChild(label);
+        // Create an <input> element, set its type and name attributes
+        var input = document.createElement("input");
+        input.type = "text";
+        input.name = "WageAsset" + i;
+        input.id = "assetWage" + i;
+        container2.appendChild(input);
+        // Append a line break
+        container2.appendChild(document.createElement("br"));
+      }
+    }
+    function payments() {
+      let number = document.getElementById("nom").value;
+      for (i = 0; i < number; i++) {
+        // Append a node with a random text
+        const label = document.createElement("label");
+        label.htmlFor = "materialType" + i;
+        label.textContent = "Type of Material " + (i + 1);
+        container3.appendChild(label);
+        // Create an <input> element, set its type and name attributes
+        var input = document.createElement("input");
+        input.type = "text";
+        input.name = "MaterialType" + i;
+        input.id = "materialType" + i;
+        container3.appendChild(input);
+        // Append a line break
+        container3.appendChild(document.createElement("br"));
+      }
+      material_cost();
+    }
+    function material_cost() {
+      let number = document.getElementById("nom").value;
+      for (i = 0; i < number; i++) {
+        // Append a node with a random text
+        const label = document.createElement("label");
+        label.htmlFor = "materialCost" + i;
+        label.textContent = "Cost of Material " + (i + 1);
+        container3.appendChild(label);
+        // Create an <input> element, set its type and name attributes
+        var input = document.createElement("input");
+        input.type = "text";
+        input.name = "MaterialCost" + i;
+        input.id = "materialCost" + i;
+        container3.appendChild(input);
+        // Append a line break
+        container3.appendChild(document.createElement("br"));
+        event.preventDefault();
+      }
+      recipets();
+    }
+    function recipets() {
+      let number = document.getElementById("nom").value;
+      for (i = 0; i < number; i++) {
+        // Append a node with a random text
+        const label = document.createElement("label");
+        label.htmlFor = "recipet" + i;
+        label.textContent = "Recipet of material" + (i + 1);
+        container3.appendChild(label);
+        // Create an <input> element, set its type and name attributes
+        var input = document.createElement("input");
+        input.type = "file";
+        input.name = "recipet" + i;
+        input.id = "recipet" + i;
+        input.accept = "image/*";
+        container3.appendChild(input);
+        // Append a line break
+        container3.appendChild(document.createElement("br"));
+        event.preventDefault();
+      }
+    }
+  </script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const firebaseConfig = FIREBASE_CONFIG; // add firebase config
+
+      // Initialize Firebase
+      const app = firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+      const storage = firebase.storage();
+      const storageRef = storage.ref();
+
+      var form = document.getElementById("farmer-form");
+
+      const handleForm = async (event) => {
+        try {
+          event.preventDefault();
+          console.log("submission started");
+          const button = document.getElementById("submit-btn");
+          button.disabled = true;
+          button.innerHTML = "Submitting...";
+          button.style.backgroundColor = "grey";
+
+          let farmerData = new FormData(form);
+          const obj = Object.fromEntries(farmerData);
+
+          if (obj.photos.name.length > 0) {
+            const snapshot = await storageRef
+              .child(`images/${obj.firstname}-${obj.photos.name}`)
+              .put(obj.photos, {
+                contentType: "image/*",
+              });
+            const url = await snapshot.ref.getDownloadURL();
+            obj.photos = url;
+          } else {
+            obj.photos = "";
+          }
+
+          if (obj.videos.name.length > 0) {
+            const snapshot = await storageRef
+              .child(`videos/${obj.firstname}-${obj.videos.name}`)
+              .put(obj.videos, {
+                contentType: "video/*",
+              });
+            const url = await snapshot.ref.getDownloadURL();
+            obj.videos = url;
+          } else {
+            obj.videos = "";
+          }
+
+          if (obj.numofassets.length > 0) {
+            const forLoop = async (_) => {
+              for (i = 0; i < obj.numofassets; i++) {
+                const snapshot = await storageRef
+                  .child(
+                    `images/${obj.firstname}-asset${i}-${
+                      obj[`recipet${i}`]?.name
+                    }`
+                  )
+                  .put(obj.photos, {
+                    contentType: "image/*",
+                  });
+                const url = await snapshot.ref.getDownloadURL();
+                obj[`recipet${i}`] = url;
+              }
+            };
+            await forLoop();
+          }
+
+          await db.collection("farmers").doc().set(obj);
+
+          console.log("submitted successfully");
+          button.disabled = false;
+          button.innerHTML = "Submit";
+          button.style.backgroundColor = "blue";
+        } catch (error) {
+          console.log("submission failed");
+          console.log(error);
+          button.disabled = false;
+          button.innerHTML = "Submit";
+          button.style.backgroundColor = "red";
+        }
+      };
+      form.addEventListener("submit", handleForm);
+    });
+  </script>
+</html>

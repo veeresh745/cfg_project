@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="farmer-details"></div>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const firebaseConfig = FIREBASE_CONFIG; // add firebase config
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        let farmersRef = db.collection("farmers");
+
+        let farmerDiv = document.getElementById("farmer-details");
+
+        farmersRef
+          .get()
+          .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              const newDiv = document.createElement("div");
+              newDiv.innerHTML = `
+                <div>
+                  <h1>${doc.data().firstname}</h1>
+                  <p>${doc.data().age}</p>
+                  ${
+                    doc.data().photos &&
+                    `<img src="${doc.data().photos}" alt="photos">`
+                  }
+                  ${
+                    doc.data().videos &&
+                    `<video src="${doc.data().videos}" controls></video>`
+                  }
+                </div>
+                `;
+              farmerDiv.appendChild(newDiv);
+            });
+          })
+          .catch((error) => {
+            console.error("Error getting documents: ", error);
+          });
+      });
+    </script>
+  </body>
+</html>
